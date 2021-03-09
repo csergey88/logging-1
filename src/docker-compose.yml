@@ -14,6 +14,11 @@ services:
       - 9292:9292/tcp
     networks:
       - reddit
+    logging: 
+      driver: "fluentd"
+      options:
+        fluentd-address: localhost:24224
+        tag: service.ui
   post:
     image: csergey88/post:latest
     networks:
