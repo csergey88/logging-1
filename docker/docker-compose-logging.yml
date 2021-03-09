@@ -19,7 +19,7 @@ services:
     command: 
       - sh
       - -c
-      - sudo sysctl -w vm.max_map_count=262144
+      - echo "vm.max_map_count" >> /etc/sysctl.conf
 
   kibana:
     image: kibana:7.4.0
