@@ -16,10 +16,8 @@ services:
       - "9200:9200"
     networks: 
       - monitoring_net
-    command: 
-      - sh
-      - -c
-      - echo "vm.max_map_count" >> /etc/sysctl.conf
+    sysctls:
+      - vm.max_map_count=262144
 
   kibana:
     image: kibana:7.4.0
