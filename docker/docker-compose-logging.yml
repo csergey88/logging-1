@@ -6,7 +6,7 @@ services:
       - "24224:24224"
       - "24224:24224/udp"
     networks: 
-      - monitoring_net
+      - reddit
 
   elasticsearch:
     image: elasticsearch:7.4.0
@@ -17,7 +17,7 @@ services:
     environment:
       - discovery.type=single-node
     networks: 
-      - monitoring_net
+      - reddit
 
   kibana:
     image: kibana:7.4.0
@@ -26,8 +26,8 @@ services:
     ports:
       - "5601:5601"
     networks: 
-      - monitoring_net
+      - reddit
 
 
 networks: 
-  monitoring_net:
+  reddit:
