@@ -2,6 +2,8 @@ version: '2'
 services:
   fluentd:
     image: csergey88/fluentd
+    environment: 
+      - ZIPKIN_ENABLED=true
     ports:
       - "24224:24224"
       - "24224:24224/udp"
@@ -16,6 +18,7 @@ services:
       - "9200:9200"
     environment:
       - discovery.type=single-node
+      - ZIPKIN_ENABLED=true
     networks: 
       - reddit
 
@@ -23,8 +26,19 @@ services:
     image: kibana:7.4.0
     depends_on: 
       - elasticsearch
+    environment: 
+      - ZIPKIN_ENABLED=true
     ports:
       - "5601:5601"
+    networks: 
+      - reddit
+
+  zipkin:
+    image: openzipkin/zipkin
+    ports:
+      - "9411:9411"
+    environment: 
+      - ZIPKIN_ENABLED=true
     networks: 
       - reddit
 
